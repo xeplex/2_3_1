@@ -22,4 +22,22 @@ public class CarDaoImpl implements CarDao {
     public List<Car> getCars() {
         return sessionFactory.getCurrentSession().createQuery("from Car").getResultList();
     }
+
+    @Override
+    public void saveCar(Car car) {
+        sessionFactory.getCurrentSession().saveOrUpdate(car);
+    }
+
+    @Override
+    public Car getCar(int id) {
+        return sessionFactory.getCurrentSession().get(Car.class, id);
+    }
+
+    @Override
+    public void deleteCar(int id) {
+        sessionFactory.getCurrentSession()
+                .createQuery("delete from Car where id = :carId")
+                .setParameter("userId", id)
+                .executeUpdate();
+    }
 }
