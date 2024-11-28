@@ -4,6 +4,43 @@
     <meta charset="UTF-8">
     <title>Cars</title>
 </head>
+<style>
+    .red-button {
+        padding: 3px 7px;
+        background-color: #f44336;
+        color: white;
+        border: black;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-right: 5px;
+    }
+    .yellow-button {
+        padding: 3px 7px;
+        background-color: #fffc00;
+        color: #000000;
+        border: black;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-right: 5px;
+    }
+    .full-width-button {
+        width: 23%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: black;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
 <body>
 <h1>LIST OF CARS</h1>
 <div>
@@ -12,24 +49,32 @@
             <th>Car's brand</th>
             <th>Car's model</th>
             <th>Car's year</th>
-            <th>Car's id</th>
             <th>Operations</th>
         </tr>
-        <tr th:each ="car : ${cars}">
+        <tr th:each="car : ${cars}">
             <td th:utext="${car.brand}">...</td>
             <td th:utext="${car.model}">...</td>
             <td th:utext="${car.year}">...</td>
-            <td th:utext="${car.id}">...</td>
             <td>
-                <input type="button" value="UPDATE"
-                       onclick="window.location.href = 'updateUser'"/>
-                <input type="button" value="DELETE"
-                       onclick="window.location.href = 'deleteUser'"/>
+                <div style="display: inline-block; margin-right: 10px;">
+                    <form th:action="@{/deleteCar}" method="post">
+                        <input type="hidden" name="id" th:value="${car.id}"/>
+                        <button type="submit" class="red-button">DELETE</button>
+                    </form>
+                </div>
+                <div style="display: inline-block;">
+                    <form th:action="@{/updateCar}" method="post">
+                        <input type="hidden" name="id" th:value="${car.id}"/>
+                        <button type="submit" class="yellow-button">UPDATE</button>
+                    </form>
+                </div>
             </td>
         </tr>
     </table>
     <br>
-    <input type="button" value="ADD" onclick="window.location.href = 'addNewUser'"/>
+    <div style="width: 100%;">
+        <input type="button" value="ADD" onclick="window.location.href = 'addNewCar'" class="full-width-button"/>
+    </div>
 </div>
 </body>
 </body>

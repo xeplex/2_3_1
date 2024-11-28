@@ -23,7 +23,7 @@ public class CarController {
         return "cars";
     }
 
-    @RequestMapping("/addNewUser")
+    @RequestMapping("/addNewCar")
     public String addNewUser(Model model) {
         Car car = new Car();
         model.addAttribute("car", car);
@@ -36,15 +36,15 @@ public class CarController {
         return "redirect:/";
     }
 
-    @GetMapping("/updateInfo")
-    public String updateCar(@RequestParam("carId") int id, Model model) {
+    @PostMapping("/updateCar")
+    public String updateCar(@RequestParam("id") int id, Model model) {
         Car car = carService.getCar(id);
         model.addAttribute("car", car);
         return "car-info";
     }
 
-    @GetMapping("/deleteCar")
-    public String deleteCar(@RequestParam("carId") int id) {
+    @PostMapping("/deleteCar")
+    public String deleteCar(@RequestParam("id") int id) {
         carService.deleteCar(id);
         return "redirect:/";
     }

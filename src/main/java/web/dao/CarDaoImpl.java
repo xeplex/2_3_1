@@ -37,7 +37,7 @@ public class CarDaoImpl implements CarDao {
     public void deleteCar(int id) {
         sessionFactory.getCurrentSession()
                 .createQuery("delete from Car where id = :carId")
-                .setParameter("userId", id)
+                .setParameter("carId", id)
                 .executeUpdate();
     }
 }
