@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+</head>
+<body>
+<h1>LIST OF CARS</h1>
+<div>
+    <table border="1">
+        <tr>
+            <th>Car's brand</th>
+            <th>Car's model</th>
+            <th>Car's year</th>
+            <th>Car's id</th>
+        </tr>
+        <tr th:each ="car : ${cars}">
+            <td th:utext="${car.brand}">...</td>
+            <td th:utext="${car.model}">...</td>
+            <td th:utext="${car.year}">...</td>
+            <td th:utext="${car.id}">...</td>
+        </tr>
+    </table>
+    <input type="button" value="ADD" onclick="window.location.href = 'addNewUser'"/>
+</div>
+</body>
+</body>
+</html>
