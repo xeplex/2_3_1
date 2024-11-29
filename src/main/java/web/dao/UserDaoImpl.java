@@ -1,10 +1,9 @@
 package web.dao;
 
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 
 
@@ -12,29 +11,27 @@ import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
-    @Transactional
     public List<User> getUsers() {
-        return sessionFactory.getCurrentSession().createQuery("from User").getResultList();
+        return entityManager.createQuery("from User", User.class).getResultList();
     }
 
     @Override
     public void saveUser(User user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+        entityManager.merge(user);
     }
 
     @Override
     public User getUser(int id) {
-        return sessionFactory.getCurrentSession().get(User.class, id);
+        return entityManager.find(User.class, id);
     }
 
     @Override
     public void deleteUser(int id) {
-        sessionFactory.getCurrentSession()
-                .createQuery("delete from User where id = :userId")
+        entityManager.createQuery("delete from User where id = :userId")
                 .setParameter("userId", id)
                 .executeUpdate();
     }

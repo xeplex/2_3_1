@@ -15,13 +15,14 @@
     <br><br>
     Surname: <input type="text" th:field="*{surname}"/>
     <br><br>
-    Year of birth: <input type="text" th:field="*{birthYear}"/>
+    Year of birth: <input type="number" th:field="*{birthYear}"/>
     <br><br>
-    Height: <input type="text" th:field="*{height}"/>
+    Height: <input type="number" step="0.01" th:field="*{height}"/>
     <br><br>
-    Weight: <input type="text" th:field="*{weight}"/>
+    Weight: <input type="number" step="0.01" th:field="*{weight}"/>
     <br><br>
     <input type="submit" value="OK">
+    <input type="button" value="CANCEL" onclick="window.location.href='cancel'"/>
 
 </form>
 
