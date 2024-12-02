@@ -75,7 +75,7 @@
                     </form>
                 </div>
                 <div style="display: inline-block;">
-                    <form th:action="@{/updateUser}" method="post">
+                    <form th:action="@{/editUser}" method="get">
                         <input type="hidden" name="id" th:value="${user.id}"/>
                         <button type="submit" class="yellow-button">UPDATE</button>
                     </form>
